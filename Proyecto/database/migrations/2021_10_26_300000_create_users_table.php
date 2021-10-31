@@ -16,12 +16,13 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('correo', 50)->unique();
-            $table->string('password', 60);
-            $table->string('egresado_matricula', 12)->nullable();
-            $table->foreign('egresado_matricula')->references('matricula')->on('Egresado');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            
         });
     }
 

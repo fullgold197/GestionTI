@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\DBAL\Driver\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//conecta para reestablecer clave
+ Route::resource('store', UserController::class)->middleware('auth');
+
+ Auth::routes(['verify'=>true]);
